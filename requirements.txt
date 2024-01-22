@@ -86,6 +86,7 @@ sortedcontainers==2.4.0
 soupsieve==2.5
 SpeechRecognition==3.8.1
 streamlit==1.21.0
+streamlit-chat @ https://github.com/AI-Yash/st-chat/archive/refs/pull/24/head.zip#sha256=c4e9309dfb2d0d7859c9d26051e62c1ba3d7f352ceb08bb950e1a3f6645bbfc8
 tls-client==0.2.1
 toml==0.10.2
 toolz==0.12.0
