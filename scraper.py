@@ -33,7 +33,7 @@ for item in items:
             print(message)
             payload = {
                 # 'text': "<users/all> : NoticeBoard Alert",
-                'text': "<users/> : test from live server",
+                'text': "<users/all>",
 
                 'cards': [
                     {
