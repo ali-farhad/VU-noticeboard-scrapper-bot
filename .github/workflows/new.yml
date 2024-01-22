@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Important: This allows your job to access all commits
-          token: ${{ secrets.botfather }}  # Use the PAT for authentication
+          token: ${{ secrets.GH_PAT }}  # Use the PAT for authentication
 
       - name: Set up Python
         uses: actions/setup-python@v2
