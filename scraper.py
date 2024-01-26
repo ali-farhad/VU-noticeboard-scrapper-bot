@@ -1,5 +1,5 @@
 # coded by alifahad
-# scrapes vu noticeboard and alerts in vu chat space
+# scrapes  last msg from vu noticeboard and alerts in vu chat space
 
 import requests
 from bs4 import BeautifulSoup
@@ -22,24 +22,18 @@ with open('previous_message.txt', 'r') as f:
 
 # Find the relevant items
 items = soup.find_all(class_="m-timeline-3__item m-timeline-3__item--info")
-
-for item in items:
-    date_str = item.find(class_="m-timeline-3__item-link").text
-    date = datetime.strptime(date_str, '%B %d, %Y').strftime('%Y-%m-%d')
-
-    if date >= datetime.now().strftime('%Y-%m-%d'):
-        message = item.find(class_="m-timeline-3__item-text").text
-        if message != previous_message:
-            print(message)
-            payload = {
-                # 'text': "<users/all> : NoticeBoard Alert",
-                'text': "<users/>",
+message = items[0].find(class_="newstext").text
+if message != previous_message:
+    print(message)
+    payload = {
+        'text': "<users/all> : NoticeBoard Alert",
+        # 'text': "<users/>",
 
                 'cards': [
                     {
                         'header': {
-                            # 'title': '⚠️NoticeBoard Alert⚠️',
-                            'title': '❌Under Maintenance ❌'
+                            'title': '⚠️NoticeBoard Alert⚠️',
+                            # 'title': '❌Under Maintenance ❌'
 
                         },
                         'sections': [
@@ -47,8 +41,8 @@ for item in items:
                                 'widgets': [
                                     {
                                         'textParagraph': {
-                                            # 'text':  message + '<br><a href=\"https://vulms.vu.edu.pk/NoticeBoard/NoticeBoard2.aspx\">Link</a>'
-                                            'text': ''
+                                            'text':  message + '<br><a href=\"https://vulms.vu.edu.pk/NoticeBoard/NoticeBoard2.aspx\">Link</a>'
+                                            # 'text': ''
 
                                         }
                                     }
@@ -57,11 +51,10 @@ for item in items:
                         ]
                     }
                 ]
-            }
-            response = requests.post(WEBHOOK_URL, json=payload)
-            response.raise_for_status()
-         # Save the current message as the previous message
-        with open('previous_message.txt', 'w') as f:
-            f.write(message)
+    }
+    response = requests.post(WEBHOOK_URL, json=payload)
+    response.raise_for_status()
 
-    # time.sleep(60)
+    # Save the current message as the previous message
+    with open('previous_message.txt', 'w') as f:
+        f.write(message)
