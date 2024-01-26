@@ -33,12 +33,13 @@ for item in items:
             print(message)
             payload = {
                 # 'text': "<users/all> : NoticeBoard Alert",
-                'text': "<users/all>",
+                'text': "<users/>",
 
                 'cards': [
                     {
                         'header': {
-                            'title': '⚠️NoticeBoard Alert⚠️',
+                            # 'title': '⚠️NoticeBoard Alert⚠️',
+                            'title': '❌Under Maintenance ❌'
 
                         },
                         'sections': [
@@ -46,7 +47,8 @@ for item in items:
                                 'widgets': [
                                     {
                                         'textParagraph': {
-                                            'text':  message + '<br><a href=\"https://vulms.vu.edu.pk/NoticeBoard/NoticeBoard2.aspx\">Link</a>'
+                                            # 'text':  message + '<br><a href=\"https://vulms.vu.edu.pk/NoticeBoard/NoticeBoard2.aspx\">Link</a>'
+                                            'text': ''
 
                                         }
                                     }
